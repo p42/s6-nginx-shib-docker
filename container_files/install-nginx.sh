@@ -100,8 +100,8 @@ echo $(ls ../)
     install -m755 objs/ngx_stream_geoip_module.so /usr/lib/nginx/modules/ngx_stream_geoip_module.so 
     ln -s ../../usr/lib/nginx/modules /etc/nginx/modules
 
-cd / 
-rm -rf "nginx-${NGINX_VERSION}" \
-    "echo-nginx-module-${ECHO_VERSION}" \
-    "headers-more-nginx-module-${MORE_HEADERS_VERSION}" \
-    "nginx-http-shibboleth-${NGINX_SHIB_VERSION}"
+# cd / 
+# rm -rf "nginx-${NGINX_VERSION}" \
+#     "echo-nginx-module-${ECHO_VERSION}" \
+#     "headers-more-nginx-module-${MORE_HEADERS_VERSION}" \
+#     "nginx-http-shibboleth-${NGINX_SHIB_VERSION}"

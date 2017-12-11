@@ -1,0 +1,4 @@
+#!/usr/bin/with-contenv /bin/sh
+
+echo "Spawning fcgi shibresponder socket"
+spawn-fcgi -n /usr/lib/x86_64-linux-gnu/shibboleth/shibresponder -s /tmp/shibresponder.sock -M 0600

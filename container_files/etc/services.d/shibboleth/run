@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv /bin/sh
+
+echo "Starting shibboleth"
+# shibd -F
+shibd -fF -w 10

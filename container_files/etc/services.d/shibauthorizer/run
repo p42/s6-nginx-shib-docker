@@ -1,0 +1,4 @@
+#!/usr/bin/with-contenv /bin/sh
+
+echo "Spawning fcgi shibauthorizer socket."
+spawn-fcgi -n /usr/lib/x86_64-linux-gnu/shibboleth/shibauthorizer -s /tmp/shibauthorizer.sock -M 0600

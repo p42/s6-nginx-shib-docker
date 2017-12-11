@@ -1,7 +1,7 @@
 
 ## Versions
 
-* Base OS: alpine3.6
+* Base OS: [debian stretch](project42/s6-debian) :9
 * [Shibboleth](https://shibboleth.net/): 2.5.3
 * [nginx](http://nginx.org/): 1.13.7
 * [envplate](https://github.com/kreuzwerker/envplate): 0.0.8

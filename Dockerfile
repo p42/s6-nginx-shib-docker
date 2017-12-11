@@ -1,28 +1,41 @@
 #Install and configure [] 
 
-FROM project42/s6-alpine:3.6
+FROM project42/s6-debian:9
 MAINTAINER Brandon Cone bcone@esu10.org
 
 ENV NGINX_VERSION 1.12.2
-RUN apk update && \
-    apk add curl \
-    build-base \
-    gcc \
-    libc-dev \
-    make \
-    openssl-dev \
-    pcre-dev \
-    zlib-dev \
-    linux-headers \
-    curl \
-    gnupg \
-    libxslt-dev \
-    gd-dev \
-    geoip-dev
+RUN apt-get update
+RUN apt-get install -y opensaml2-schemas \
+      xmltooling-schemas \
+      libshibsp7 \
+      libshibsp-plugins \
+      shibboleth-sp2-common \
+      shibboleth-sp2-utils \
+      procps \
+      curl \
+      git \
+      build-essential \
+      libpcre3 \
+      libpcre3-dev \
+      libpcrecpp0v5 \
+      libssl-dev \
+      zlib1g-dev \
+      lua5.1 \
+      liblua5.1-0-dev \
+      lua-socket \
+      libxslt1-dev \
+      libgd-dev \
+      libgeoip-dev \
+      fcgiwrap \
+      vim \
+    && ln -s /usr/lib/x86_64-linux-gnu/liblua5.1.so /usr/lib/liblua.so \
+    && rm -rf /var/lib/apt/lists/*
 
 ADD container_files/install-nginx.sh /tmp/install-nginx.sh
-RUN  addgroup -S nginx && adduser -HDS -G nginx nginx && \
-    /bin/sh /tmp/install-nginx.sh 
+# RUN  addgroup nginx && adduser --system --no-create-home --ingroup nginx nginx
+RUN  addgroup nginx && adduser --system --no-create-home --ingroup nginx nginx && \
+    /bin/sh /tmp/install-nginx.sh && shib-keygen -f -u nginx
+
     # adduser --system --no-create-home --shell /bin/false --group --disabled-login www
 
 # RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
