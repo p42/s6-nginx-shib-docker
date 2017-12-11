@@ -1,6 +1,6 @@
 stages:
   - build
-  - test
+  # - test
   - deploy
 
 variables:
@@ -26,19 +26,19 @@ build:
   except:
     - master
 
-test-master:
-  stage: test
-  script:
-    - docker run --rm "${IMAGE_NAME}:latest" /ci_tests/run_tests system
-  only:
-    - master
+# test-master:
+#   stage: test
+#   script:
+#     - docker run --rm "${IMAGE_NAME}:latest" /ci_tests/run_tests system
+#   only:
+#     - master
 
-test:
-  stage: test
-  script:
-    - docker run --rm "${IMAGE_NAME}:${CI_COMMIT_REF_NAME}" /ci_tests/run_tests system
-  except:
-    - master
+# test:
+#   stage: test
+#   script:
+#     - docker run --rm "${IMAGE_NAME}:${CI_COMMIT_REF_NAME}" /ci_tests/run_tests system
+#   except:
+#     - master
 
 deploy_to_github-master:
   stage: deploy
