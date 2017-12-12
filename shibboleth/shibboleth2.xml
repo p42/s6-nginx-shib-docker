@@ -117,9 +117,9 @@
         <ApplicationOverride id="admin" entityID="https://admin.example.org/shibboleth"/>
         -->
 
-        <ApplicationOverride id="client" entityID="${CLIENT_APP_SCHEME:-https}://${CLIENT_APP_HOSTNAME:-your-app.localdomain.com}${SHIBBOLETH_RESPONDER_PATH:-/saml}/metadata">
+        <ApplicationOverride id="client" entityID="${CLIENT_APP_SCHEME:-https}://${CLIENT_APP_HOSTNAME:-your-app.localdomain.com}${SHIBBOLETH_RESPONDER_PATH:-/Shibboleth.sso}/metadata">
             <Sessions lifetime="28800" timeout="3600" relayState="ss:mem"
-                      handlerURL="${SHIBBOLETH_RESPONDER_PATH:-/saml}"
+                      handlerURL="${SHIBBOLETH_RESPONDER_PATH:-/Shibboleth.sso}"
                       handlerSSL="false"
                       checkAddress="false"
                       cookieProps="http">
