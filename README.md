@@ -1,10 +1,14 @@
 
+# Overview
+
+This docker image contains a working Shibboleth + nginx FastCGI configuration.
+
 ## Versions
 
-* Base OS: [debian stretch](project42/s6-debian) :9
+* Base OS: Debian Wheezy
 * [Shibboleth](https://shibboleth.net/): 2.5.3
-* [nginx](http://nginx.org/): 1.13.7
-* [envplate](https://github.com/kreuzwerker/envplate): 0.0.8
+* [nginx](http://nginx.org/): 1.9.4
+* [envplate](https://github.com/kreuzwerker/envplate): 0.0.7
 
 # How to use
 
@@ -86,24 +90,54 @@ The default shibboleth config file has metadata entries for:
 * Login with the Testshib IdP:
     * https://your-app.localdomain.com/saml/Login?target=/app&entityID=https://idp.testshib.org/idp/shibboleth
 
+## Notes
 
-## CI/CD
+### Build container
 
-Projects are using automated build/test/deploy pipelines availabe in GitLab. This strategy requires that you enable CI/CD on your GitLab project. **To enable pipelines, rename .gitlab-ci.yml.default to .gitlab-ci.yml.**
+````
+docker build -t vsv/shibboleth-nginx .
+````
 
-### Writing/Configuring Tests
+### Run our container
 
-* The assumption is that downstream builds are "from" a P42 base image (centos, alpine, etc). These packages come with basic test scripts installed. To include your tests in the test coverage:
-    1. Create a folder/folders in the ci_tests directory which will contain your test scripts. Please make sure these are executable files.
-    1. Write your tests using good testing conventions (singular, good debugging output, etc).
-    1. When deploying, you can run either all tests or just your local tests by supplying arguments to the docker run --rm ... command in the test stage of the .gitlab-ci.yml file. No arguments will run all tests including upstream.
-* Available Runners
-    * Multiple runners are available and can be specified or selected using the tags in .gitlab-ci.yml. Available tags are:
-    * - docker
-    * - ovirt
-    * - ubuntu
-    * - openstack
-    * - coreos
-    * - default
+#### Normal
 
-## Docker Conventions
+With log directory mounted and some example environment variables
+
+````
+docker run -p 80:80 -p 443:443 \
+    -v $(pwd)/log:/var/log \
+    -e CLIENT_APP_HOSTNAME=your-app.localdomain.com \
+    -e NGINX_PROXY_DESTINATION=http://172.17.42.1:8001 \
+    vsv/shibboleth-nginx
+````
+
+### Run bash in our container
+
+Also mount lots of directories. This allows you to override the default configuration files and templates.
+
+````
+docker run -p 80:80 -p 443:443 -it \
+    -v $(pwd)/shibboleth:/etc/shibboleth \
+    -v $(pwd)/supervisor:/etc/supervisor/conf.d \
+    -v $(pwd)/nginx/conf.d:/etc/nginx/conf.d \
+    -v $(pwd)/log:/var/log \
+    vsv/shibboleth-nginx /bin/bash
+````
+
+### Run supervisor in an 'envplate' context
+
+Run this while in bash inside the container
+
+````
+/usr/local/bin/ep -v /etc/nginx/conf.d/default.conf /etc/shibboleth/shibboleth2.xml -- \
+    /usr/bin/supervisord --nodaemon --configuration /etc/supervisor/supervisord.conf
+````
+
+### Run supervisor
+
+Run this while in bash inside the container
+
+````
+supervisord --nodaemon --configuration /etc/supervisor/supervisord.conf
+````

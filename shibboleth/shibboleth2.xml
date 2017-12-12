@@ -52,7 +52,7 @@
             (Set discoveryProtocol to "WAYF" for legacy Shibboleth WAYF support.)
             You can also override entityID on /Login query string, or in RequestMap/htaccess.
             -->
-            <SSO entityID="https://dev-auth.esu10.org/simplesaml/saml2/idp/metadata.php">SAML2 SAML1</SSO>
+            <SSO entityID="https://idp.testshib.org/idp/shibboleth">SAML2 SAML1</SSO>
 
             <!-- SAML and local-only logout. -->
             <Logout>SAML2 Local</Logout>
@@ -117,16 +117,15 @@
         <ApplicationOverride id="admin" entityID="https://admin.example.org/shibboleth"/>
         -->
 
-        <ApplicationOverride id="client" entityID="${CLIENT_APP_SCHEME:-https}://${CLIENT_APP_HOSTNAME:-your-app.localdomain.com}${SHIBBOLETH_RESPONDER_PATH:-/saml}/metadata">
+        <ApplicationOverride id="client" entityID="${CLIENT_APP_SCHEME:-https}://${CLIENT_APP_HOSTNAME:-your-app.localdomain.com}${SHIBBOLETH_RESPONDER_PATH:-/Shibboleth.sso}/metadata">
             <Sessions lifetime="28800" timeout="3600" relayState="ss:mem"
-                      handlerURL="${SHIBBOLETH_RESPONDER_PATH:-/saml}"
+                      handlerURL="${SHIBBOLETH_RESPONDER_PATH:-/Shibboleth.sso}"
                       handlerSSL="false"
                       checkAddress="false"
                       cookieProps="http">
 
                 <!-- DEFAULT to OpenIdP -->
-                <!-- <SSO entityID="https://openidp.feide.no"> -->
-                <SSO entityID="https://dev-auth.esu10.org/simplesaml/saml2/idp/metadata.php">
+                <SSO entityID="https://openidp.feide.no">
                     SAML2 SAML1
                 </SSO>
 
