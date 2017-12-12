@@ -2,4 +2,4 @@
 
 echo "Starting shibboleth"
 # shibd -F
-shibd -fF -w 10
+shibd -fF -w 10 -u nxinx
