@@ -52,7 +52,7 @@
             (Set discoveryProtocol to "WAYF" for legacy Shibboleth WAYF support.)
             You can also override entityID on /Login query string, or in RequestMap/htaccess.
             -->
-            <SSO entityID="https://dev-auth.esu10.org/simplesaml/saml2/idp/metadata.php">SAML2 SAML1</SSO>
+            <SSO entityID="https://idp.testshib.org/idp/shibboleth">SAML2 SAML1</SSO>
 
             <!-- SAML and local-only logout. -->
             <Logout>SAML2 Local</Logout>
@@ -125,8 +125,7 @@
                       cookieProps="http">
 
                 <!-- DEFAULT to OpenIdP -->
-                <!-- <SSO entityID="https://openidp.feide.no"> -->
-                <SSO entityID="https://dev-auth.esu10.org/simplesaml/saml2/idp/metadata.php">
+                <SSO entityID="https://openidp.feide.no">
                     SAML2 SAML1
                 </SSO>
 
