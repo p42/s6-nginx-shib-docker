@@ -42,9 +42,9 @@
         security of your site. Stealing sessions via cookie theft is much easier with this disabled.
         -->
         <Sessions lifetime="28800" timeout="3600" relayState="ss:mem"
-                  handlerSSL="false"
+                  handlerSSL="true"
                   checkAddress="false"
-                  cookieProps="http">
+                  cookieProps="https">
 
             <!--
             Configures SSO for a default IdP. To allow for >1 IdP, remove
@@ -126,9 +126,9 @@
         <ApplicationOverride id="client" entityID="${CLIENT_APP_SCHEME:-https}://${CLIENT_APP_HOSTNAME:-your-app.localdomain.com}${SHIBBOLETH_RESPONDER_PATH:-/saml}/metadata">
             <Sessions lifetime="28800" timeout="3600" relayState="ss:mem"
                       handlerURL="${SHIBBOLETH_RESPONDER_PATH:-/saml}"
-                      handlerSSL="false"
+                      handlerSSL="true"
                       checkAddress="false"
-                      cookieProps="http">
+                      cookieProps="https">
 
                 <!-- DEFAULT to OpenIdP -->
                 <!-- <SSO entityID="https://openidp.feide.no"> -->
