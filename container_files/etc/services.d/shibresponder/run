@@ -1,4 +1,6 @@
 #!/usr/bin/with-contenv /bin/sh
 
+echo "Waiting for shibboleth and nginx to be started."
+# s6-svwait -u -a /var/run/s6/services/nginx /var/run/s6/services/shibboleth
 echo "Spawning fcgi shibresponder socket"
-spawn-fcgi -n /usr/lib/x86_64-linux-gnu/shibboleth/shibresponder -s /tmp/shibresponder.sock -M 0600
+spawn-fcgi -n /usr/lib/x86_64-linux-gnu/shibboleth/shibresponder -s /tmp/shibresponder.sock -M 0654 -U nginx -G nginx

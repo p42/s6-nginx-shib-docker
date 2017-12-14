@@ -1,5 +1,9 @@
 #!/usr/bin/with-contenv /bin/sh
 
+echo "Waiting for nginx to start"
+s6-svwait -u /var/run/s6/services/nginx
+
 echo "Starting shibboleth"
 # shibd -F
-shibd -fF  -c /etc/shibboleth/shibboleth2.xml
+shibd -fF  -c /etc/shibboleth/shibboleth2.xml -g nginx -w 10
+# shibd -fF -u nginx -g nginx

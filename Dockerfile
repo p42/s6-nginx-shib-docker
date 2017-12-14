@@ -34,7 +34,9 @@ RUN apt-get install -y opensaml2-schemas \
 ADD container_files/install-nginx.sh /tmp/install-nginx.sh
 # RUN  addgroup nginx && adduser --system --no-create-home --ingroup nginx nginx
 RUN  addgroup nginx && adduser --system --no-create-home --ingroup nginx nginx && \
-    /bin/sh /tmp/install-nginx.sh && shib-keygen -f -u nginx
+    /bin/sh /tmp/install-nginx.sh && \
+    shib-keygen -f -u nginx && \
+    usermod -aG nginx root
 
     # adduser --system --no-create-home --shell /bin/false --group --disabled-login www
 

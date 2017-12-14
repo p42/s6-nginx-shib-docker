@@ -52,6 +52,9 @@
             (Set discoveryProtocol to "WAYF" for legacy Shibboleth WAYF support.)
             You can also override entityID on /Login query string, or in RequestMap/htaccess.
             -->
+
+            <!-- <SSO entityID="https://idp.testshib.org/idp/shibboleth">SAML2 SAML1</SSO> -->
+
             <SSO entityID="https://dev-auth.esu10.org/simplesaml/saml2/idp/metadata.php">SAML2 SAML1</SSO>
 
             <!-- SAML and local-only logout. -->
@@ -82,15 +85,18 @@
           - OpenIDP
           - @see https://openidp.feide.no/
           -->
-        <MetadataProvider type="XML" uri="https://openidp.feide.no/simplesaml/saml2/idp/metadata.php"
-                          backingFilePath="openidp-metadata.xml" reloadInterval="180000"/>
+        <MetadataProvider type="XML" uri="https://dev-auth.esu10.org/simplesaml/saml2/idp/metadata.php"/>
+        <!-- <MetadataProvider type="XML" uri="https://dev-auth.esu10.org/simplesaml/saml2/idp/metadata.php"
+            backingFilePath="/etc/shibboleth/e10dev-metadata.xml"/> -->
+        <!-- <MetadataProvider type="XML" uri="https://openidp.feide.no/simplesaml/saml/idp/metadata.php"
+                          backingFilePath="openidp-metadata.xml" reloadInterval="180000"/> -->
 
         <!--
           - TestShib
           - @see http://www.testshib.org/
           -->
-        <MetadataProvider type="XML" uri="http://www.testshib.org/metadata/testshib-providers.xml"
-                          backingFilePath="testshib-two-idp-metadata.xml" reloadInterval="180000"/>
+        <!-- <MetadataProvider type="XML" uri="http://www.testshib.org/metadata/testshib-providers.xml"
+                          backingFilePath="testshib-two-idp-metadata.xml" reloadInterval="180000"/> -->
 
         <!-- Map to extract attributes from SAML assertions. -->
         <AttributeExtractor type="XML" validate="true" reloadChanges="false" path="attribute-map.xml"/>
