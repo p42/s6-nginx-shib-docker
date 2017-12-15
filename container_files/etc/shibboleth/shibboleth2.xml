@@ -77,7 +77,7 @@
         Allows overriding of error template information/filenames. You can
         also add attributes with values that can be plugged into the templates.
         -->
-        <Errors supportContact="iskandar@hellomatter.com"
+        <Errors supportContact="adam.zheng@esu10.org"
                 helpLocation="/about.html"
                 styleSheet="/shibboleth-sp/main.css"/>
 
@@ -137,7 +137,7 @@
                 </SSO>
 
                 <!-- Extension service that generates "approximate" metadata based on SP configuration. -->
-                <Handler type="MetadataGenerator" Location="/metadata" signing="false"/>
+                <Handler type="MetadataGenerator" Location="/metadata" signing="false" https="true" />
 
                 <!-- Status reporting service. -->
                 <Handler type="Status" Location="/status" />
