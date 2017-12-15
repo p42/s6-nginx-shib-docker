@@ -23,7 +23,7 @@
         <RequestMap applicationId="client"
                     authType="shibboleth">
             <Host name="${CLIENT_APP_HOSTNAME:-your-app.localdomain.com}"
-                  requireSession="true">
+                  scheme = "${CLIENT_APP_SCHEME:-https}" requireSession="true">
                 <Path name="${CLIENT_APP_SECURE_PATH:-/app}" />
             </Host>
         </RequestMap>
