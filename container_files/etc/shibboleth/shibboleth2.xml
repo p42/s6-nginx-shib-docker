@@ -137,7 +137,7 @@
                 </SSO>
 
                 <!-- Extension service that generates "approximate" metadata based on SP configuration. -->
-                <Handler type="MetadataGenerator" Location="/metadata" signing="false" https="true" />
+                <Handler type="MetadataGenerator" Location="/metadata" signing="false" http="false" https="true" />
 
                 <!-- Status reporting service. -->
                 <Handler type="Status" Location="/status" />
