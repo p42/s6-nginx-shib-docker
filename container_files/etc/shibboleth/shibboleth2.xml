@@ -128,7 +128,7 @@
                       handlerURL="${SHIBBOLETH_RESPONDER_PATH:-/saml}"
                       handlerSSL="false"
                       checkAddress="false"
-                      cookieProps="https">
+                      cookieProps="http">
 
                 <!-- DEFAULT to OpenIdP -->
                 <!-- <SSO entityID="https://openidp.feide.no"> -->
