@@ -1,13 +1,13 @@
-log4j.rootCategory=INFO, console
+log4j.rootCategory=DEBUG, console
 
-# fairly verbose for DEBUG, so generally leave at INFO
-log4j.category.XMLTooling.XMLObject=INFO
-log4j.category.XMLTooling.KeyInfoResolver=INFO
-log4j.category.Shibboleth.IPRange=INFO
-log4j.category.Shibboleth.PropertySet=INFO
+# fairly verbose for DEBUG, so generally leave at DEBUG
+log4j.category.XMLTooling.XMLObject=DEBUG
+log4j.category.XMLTooling.KeyDEBUGResolver=DEBUG
+log4j.category.Shibboleth.IPRange=DEBUG
+log4j.category.Shibboleth.PropertySet=DEBUG
 
 # raise for low-level tracing of SOAP client HTTP/SSL behavior
-log4j.category.XMLTooling.libcurl=INFO
+log4j.category.XMLTooling.libcurl=DEBUG
 
 # useful categories to tune independently:
 #
