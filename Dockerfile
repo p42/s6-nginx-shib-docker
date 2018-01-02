@@ -28,14 +28,18 @@ RUN apt-get install -y opensaml2-schemas \
       libgeoip-dev \
       fcgiwrap \
       vim \
+      php-fpm \
+      # php \
+      net-tools \
     && ln -s /usr/lib/x86_64-linux-gnu/liblua5.1.so /usr/lib/liblua.so \
     && rm -rf /var/lib/apt/lists/*
 
+RUN apt-get update && apt-get install -y php
 ADD container_files/install-nginx.sh /tmp/install-nginx.sh
 # RUN  addgroup nginx && adduser --system --no-create-home --ingroup nginx nginx
 RUN  addgroup nginx && adduser --system --no-create-home --ingroup nginx nginx && \
     /bin/sh /tmp/install-nginx.sh && \
-    shib-keygen -f -u nginx && \
+    shib-keygen -u nginx && \
     usermod -aG nginx root
 
     # adduser --system --no-create-home --shell /bin/false --group --disabled-login www

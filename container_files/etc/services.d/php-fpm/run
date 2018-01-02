@@ -1,0 +1,10 @@
+#!/usr/bin/with-contenv /bin/sh
+
+# echo "Starting php-fpm"
+# echo "Ensuring that the path exists for our socket creation"
+# if [ ! -d /run/php ]; then
+#     echo "/run/php directory does not exist. creating it."
+#     mkdir /run/php
+# fi
+# exit 1
+php-fpm7.0 -F
