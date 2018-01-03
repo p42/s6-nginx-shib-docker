@@ -3,4 +3,5 @@
 echo "Waiting for shibboleth and nginx to be started."
 # s6-svwait -u -a /var/run/s6/services/nginx /var/run/s6/services/shibboleth
 echo "Spawning fcgi shibauthorizer socket."
-spawn-fcgi -n /usr/lib/x86_64-linux-gnu/shibboleth/shibauthorizer -s /tmp/shibauthorizer.sock -M 0654 -U nginx -G nginx
+spawn-fcgi -n /usr/lib/x86_64-linux-gnu/shibboleth/shibauthorizer -p9001 -M 0654 -U nginx -G nginx
+# spawn-fcgi -n /usr/lib/x86_64-linux-gnu/shibboleth/shibauthorizer -s /tmp/shibauthorizer.sock -M 0654 -U nginx -G nginx
