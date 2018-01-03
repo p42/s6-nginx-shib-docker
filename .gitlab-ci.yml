@@ -1,5 +1,5 @@
 stages:
-  - build
+  # - build
   # - test
   - deploy
 
@@ -10,21 +10,21 @@ variables:
 before_script:
   - docker info
 
-build-master:
-  stage: build
-  script:
-    - git checkout master
-    - docker build --pull -t "${IMAGE_NAME}:latest" .
-  only:
-    - master
+# build-master:
+#   stage: build
+#   script:
+#     - git checkout master
+#     - docker build --pull -t "${IMAGE_NAME}:latest" .
+#   only:
+#     - master
 
-build:
-  stage: build
-  script:
-    - git checkout ${CI_COMMIT_REF_NAME}
-    - docker build --pull -t "${IMAGE_NAME}:${CI_COMMIT_REF_NAME}" .
-  except:
-    - master
+# build:
+#   stage: build
+#   script:
+#     - git checkout ${CI_COMMIT_REF_NAME}
+#     - docker build --pull -t "${IMAGE_NAME}:${CI_COMMIT_REF_NAME}" .
+#   except:
+#     - master
 
 # test-master:
 #   stage: test
